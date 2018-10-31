@@ -9,7 +9,7 @@ data1, meta_data = ts.get_intraday(symbol='MSFT', interval='1day', outputsize='f
 
 
 '''
-import matplotlib.pyplot as plt
+from datetime import datetime
 import fix_yahoo_finance as yf
 import pandas as pd
 import pickle
@@ -21,7 +21,7 @@ tickers = list(companies[companies['MarketCap'] >= companies['MarketCap'].quanti
 top_ticker_data = {}
 
 for ticker in tickers:
-    top_ticker_data[ticker] = yf.download(ticker,'2010-01-01','2018-10-17')
+    top_ticker_data[ticker] = yf.download(ticker,'2000-01-01', str(str(datetime.now())[:10]))
 
 with open('ticker_data.pkl', 'wb') as f:
     pickle.dump(top_ticker_data, f)
